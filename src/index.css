@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*{
+    font-family: Outfit;
+}
+
+
+.navbar-transparent {
+    background-color: transparent !important;
+    box-shadow: none !important; /* Remove any shadow if present */
+  }
+  
+  .sidebar-link.active {
+    background-color: #ffced5 !important; /* Light pink background */
+    color: black !important; /* Ensure text remains black */
+    border-color: #ffced5 !important; /* Slightly darker pink border */
+  }
+  
+
+  .disable-scroll::-webkit-outer-spin-button,
+.disable-scroll::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.disable-scroll {
+  -moz-appearance: textfield; /* Firefox */
+}
