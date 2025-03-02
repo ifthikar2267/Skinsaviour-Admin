@@ -26,7 +26,7 @@ const Sidebar = () => {
           className="sidebar-link d-flex align-items-center gap-2 border border-secondary-subtle border-end-0 px-3 py-2 rounded text-black text-decoration-none"
           to="/orders"
         >
-          <img className="w-25" src={assets.order_icon} alt="" />
+          <img className="w-25" src={assets.parcel_icon} alt="" />
           <p className="d-none d-md-block mb-0">Orders</p>
         </NavLink>
       </div>

@@ -26,3 +26,9 @@
 .disable-scroll {
   -moz-appearance: textfield; /* Firefox */
 }
+
+
+.table-responsive {
+  overflow-x: auto;
+  white-space: nowrap;
+}
