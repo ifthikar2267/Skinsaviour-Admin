@@ -7,7 +7,7 @@ const Sidebar = () => {
     <div className="w-25 min-vh-100 border-end">
       <div className="d-flex flex-column gap-3 pt-4 ps-4">
         <NavLink
-          className="sidebar-link d-flex align-items-center gap-2 border border-secondary-subtle border-end-0 px-3 py-2 rounded text-black text-decoration-none"
+          className="sidebar-link d-flex align-items-center gap-2 border border-secondary-subtle border-end-0 px-3 py-2 rounded text-white text-decoration-none"
           to="/add"
         >
           <img className="w-25" src={assets.add_icon} alt="" />

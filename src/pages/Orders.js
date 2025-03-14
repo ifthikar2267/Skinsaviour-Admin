@@ -20,6 +20,17 @@ const Orders = ({ token }) => {
       );
 
       if (response.data.success) {
+        let allOrdersItem = [];
+
+        response.data.orders.forEach((order) => {
+          order.items.forEach((item) => {
+            item["price"] = order.price ?? { baseRate: item.price.baseRate, total: item.price.total, quantity: item.price.quantity };
+            item["totals"] = order.totals ?? { total: 0 };
+            allOrdersItem.push(item);
+          });
+        });
+
+
         setOrders(response.data.orders.reverse());
       } else {
         toast.error(response.data.message);
@@ -55,7 +66,7 @@ const Orders = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="container-fluid px-2 px-sm-3 px-md-4 my-3">
+    <div className="container-fluid px-2 px-sm-3 px-md-4 my-4">
     <h3 className="text-center">Order Page</h3>
     <div>
       {orders.map((order, index) => (
@@ -70,37 +81,38 @@ const Orders = ({ token }) => {
   
           {/* Order Details */}
           <div className="col-12 col-sm-6">
+          <p className="mt-2">
+             <b>Name :</b> {order.shippingAddress.firstName} {order.shippingAddress.lastName}
+            </p>
             <div>
               {order.items.map((item, index) => (
                 <p className="py-0 mb-1" key={index}>
-                  {item.title} x {item.quantity}
+                  <b>Product Name :</b> {item.title} x {item.price?.quantity ?? "N/A"} Q
+
                   {index !== order.items.length - 1 ? "," : ""}
                 </p>
               ))}
             </div>
-            <p className="mt-2 fw-bold">
-              {order.shippingAddress.firstName} {order.shippingAddress.lastName}
-            </p>
             <div>
-              <p className="mb-1">{order.shippingAddress.address},</p>
+            <b>Address:</b><p className="mb-1">{order.shippingAddress.address},</p>
               <p>
                 {order.shippingAddress.city}, {order.shippingAddress.state}, {order.shippingAddress.zipCode}, {order.shippingAddress.country}
               </p>
             </div>
-            <p>{order.shippingAddress.phoneNumber}</p>
+            <p><b>Ph No :</b> {order.shippingAddress.phoneNumber}</p>
           </div>
   
           {/* Payment Info */}
           <div className="col-12 col-sm-3">
-            <p className="text-sm">Items: {order.items.length}</p>
-            <p className="mt-2">Method: {order.paymentMethod}</p>
-            <p>Payment: {order.isPaid ? "Done" : "Pending"}</p>
-            <p>Date: {new Date(order.date).toISOString().split("T")[0]}</p>
+            <p className="text-sm"><b>Items : </b>{order.items.length}</p>
+            <p className="mt-2"><b>Method : </b>{order.paymentMethod}</p>
+            <p><b>Payment : </b>{order.isPaid ? "Done" : "Pending"}</p>
+            <p><b>Date :</b> {new Date(order.date).toISOString().split("T")[0]}</p>
           </div>
   
           {/* Order Total & Status */}
           <div className="col-12 col-sm-2 p-2">
-            <p className="text-sm">Total: {currency}{order.totalPrice}</p>
+            <p className="text-sm"><b>Total :</b> {currency}{order.totals ? order.totals.total : "N/A"}</p>
             <select
               onChange={(event) => statusHandler(event, order._id)}
               value={order.orderStatus}

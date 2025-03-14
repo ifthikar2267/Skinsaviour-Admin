@@ -47,7 +47,7 @@ const List = ({ token }) => {
 
   return (
     <Container>
-      <h5 className="mb-3">All Products List</h5>
+      <h5 className="mb-3 ">All Products List</h5>
       <div className="table-responsive-sm">
         <Table striped bordered hover>
           <thead>
